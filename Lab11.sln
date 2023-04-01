@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drzewa", "Drzewa\Drzewa.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDrzewa", "TestDrzewa\TestDrzewa.csproj", "{521F0185-FC9C-406A-BEBD-2163F3CC3859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singleton", "Singleton\Singleton.csproj", "{0628D4AE-16F3-4BB9-A933-091DCFDA26FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Singleton", "Singleton\Singleton.csproj", "{0628D4AE-16F3-4BB9-A933-091DCFDA26FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVLTree", "AVLTree\AVLTree.csproj", "{EF0B8963-31BA-4DC6-9A30-896746AFEEDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0628D4AE-16F3-4BB9-A933-091DCFDA26FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0628D4AE-16F3-4BB9-A933-091DCFDA26FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0628D4AE-16F3-4BB9-A933-091DCFDA26FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0B8963-31BA-4DC6-9A30-896746AFEEDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0B8963-31BA-4DC6-9A30-896746AFEEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0B8963-31BA-4DC6-9A30-896746AFEEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0B8963-31BA-4DC6-9A30-896746AFEEDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
