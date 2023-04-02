@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace AVLTree
 {
@@ -7,7 +9,6 @@ namespace AVLTree
         private class Node
         {
             public T data;
-            public int factor = 0;
             public int Factor
             {
                 get
@@ -17,7 +18,6 @@ namespace AVLTree
                     return r-l;
                 }
             }
-            public int? height = 1;
             public int Height { get
                 {
                     int l = left?.Height ?? 0;
@@ -27,7 +27,7 @@ namespace AVLTree
             }
             public Node left;
             public Node right;
-            public Node(T data)
+            public Node(T data) 
             {
                 this.data = data;
             }
@@ -35,6 +35,10 @@ namespace AVLTree
             public override string ToString()
             {
                 return string.Format("{0}", data);
+            }
+            public string ToStringInfo()
+            {
+                return string.Format("|{0} ({1}) {2}|", left?.ToString() ?? "null",Factor, right?.ToString() ?? "null");
             }
         }
         Node root;
@@ -200,92 +204,6 @@ namespace AVLTree
                 return balanceTree(current);
             }
         }
-        private Node swapMin(Node current, out T swap)
-        {
-            if (current.left == null)
-            {
-                swap = current.data;
-                return current.right;
-            }
-            else
-            {
-                current.left = swapMin(current.left, out swap);
-                return balanceTree(current);
-            }
-        }
-        //public void Delete(T target)
-        //{//and here
-        //    root = Delete(root, target);
-        //}
-        //private Node Delete(Node current, T target)
-        //{
-        //    Node parent;
-        //    if (current == null)
-        //    { return null; }
-        //    else
-        //    {
-        //        //left subtree
-        //        if (target < current.data)
-        //        {
-        //            current.left = Delete(current.left, target);
-        //            if (balance_factor(current) == -2)//here
-        //            {
-        //                if (balance_factor(current.right) <= 0)
-        //                {
-        //                    current = RotateRR(current);
-        //                }
-        //                else
-        //                {
-        //                    current = RotateRL(current);
-        //                }
-        //            }
-        //        }
-        //        //right subtree
-        //        else if (target > current.data)
-        //        {
-        //            current.right = Delete(current.right, target);
-        //            if (balance_factor(current) == 2)
-        //            {
-        //                if (balance_factor(current.left) >= 0)
-        //                {
-        //                    current = RotateLL(current);
-        //                }
-        //                else
-        //                {
-        //                    current = RotateLR(current);
-        //                }
-        //            }
-        //        }
-        //        //if target is found
-        //        else
-        //        {
-        //            if (current.right != null)
-        //            {
-        //                //delete its inorder successor
-        //                parent = current.right;
-        //                while (parent.left != null)
-        //                {
-        //                    parent = parent.left;
-        //                }
-        //                current.data = parent.data;
-        //                current.right = Delete(current.right, parent.data);
-        //                if (balance_factor(current) == 2)//rebalancing
-        //                {
-        //                    if (balance_factor(current.left) >= 0)
-        //                    {
-        //                        current = RotateLL(current);
-        //                    }
-        //                    else { current = RotateLR(current); }
-        //                }
-        //            }
-        //            else
-        //            {   //if current.left != null
-        //                return current.left;
-        //            }
-        //        }
-        //    }
-        //    return current;
-        //}
 
         public void DisplayTree()
         {
@@ -294,8 +212,41 @@ namespace AVLTree
                 Console.WriteLine("Tree is empty");
                 return;
             }
-            InOrderDisplayTree(root);
-            Console.WriteLine();
+            StringBuilder stringBuilder = new();
+            int h = root.Height;
+            
+            
+            if (h > 1)
+            {
+                List<StringBuilder> lSB = new List<StringBuilder>();
+                for (int i = 0; i < h; i++)
+                {
+                    lSB.Add(new StringBuilder());
+                }
+                lSB[0].AppendFormat("|{0}({1})|", root.data, root.Factor);
+                lSB[1].Append(root.ToStringInfo());
+                if (h > 2)
+                {
+                    List<Node> lNode = new();
+                    lNode.Add(root);
+                    for (int i = 2; i < h; i++)
+                    {
+                        List<Node> lNodeTmp = new();
+                        lNode.ForEach(x => { lNodeTmp.Add(x.left); lNodeTmp.Add(x.right); });
+                        lNode = lNodeTmp;
+                        lNode.ForEach(x => lSB[i].Append(x.ToStringInfo()));
+                    }
+                }              
+                int pivotLen = lSB[lSB.Count - 1].Length / 2;
+                lSB.ForEach(x => x.Insert(0, new string(' ', pivotLen - (x.Length / 2))));
+                lSB.ForEach(x => stringBuilder.AppendLine(x.ToString()));
+            }
+            else
+            {
+                stringBuilder.AppendFormat("|{0}({1})|", root.data, root.Factor); ;
+            }
+
+            Console.WriteLine(stringBuilder);
         }
         private void InOrderDisplayTree(Node current)
         {

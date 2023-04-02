@@ -10,25 +10,30 @@ namespace TestDrzewa
     {
         static void Main(string[] args)
         {
-            List<int> li = new();
+            //string str = new string(;
             
             AVL<int> avl = new();
             avl.Add(1);
-            avl.Add(2);
-            avl.Add(3);
-            avl.Add(4);
-            avl.Add(5);
-            avl.Add(6);
-            avl.Add(7);
-            avl.Add(8);
-            avl.Add(9);
-            avl.Add(-1);
-
             avl.DisplayTree();
-            Console.WriteLine(avl.Contains(0));
-            Console.WriteLine(avl.Contains(1));
+            avl.Add(2);
+            avl.DisplayTree();
+            avl.Add(3);
+            avl.DisplayTree();
+            avl.Add(4);
+            avl.DisplayTree();
+            avl.Add(5);
+            avl.DisplayTree();
+            avl.Add(6);
+            avl.DisplayTree();
+            avl.Add(7);
+            avl.DisplayTree();
+            avl.Add(8);
+            avl.DisplayTree();
+            avl.Add(9);
+            avl.DisplayTree();
+            avl.Add(-1);
+            avl.DisplayTree();
             Console.WriteLine(avl.Remove(1));
-            Console.WriteLine(avl.Contains(1));
             avl.DisplayTree();
             return;
             Klasa1 k1 = Singleton<Klasa1>.Instance;
