@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using AVLTree;
 using Drzewa;
 using Singleton;
 
@@ -8,6 +10,27 @@ namespace TestDrzewa
     {
         static void Main(string[] args)
         {
+            List<int> li = new();
+            
+            AVL<int> avl = new();
+            avl.Add(1);
+            avl.Add(2);
+            avl.Add(3);
+            avl.Add(4);
+            avl.Add(5);
+            avl.Add(6);
+            avl.Add(7);
+            avl.Add(8);
+            avl.Add(9);
+            avl.Add(-1);
+
+            avl.DisplayTree();
+            Console.WriteLine(avl.Contains(0));
+            Console.WriteLine(avl.Contains(1));
+            Console.WriteLine(avl.Remove(1));
+            Console.WriteLine(avl.Contains(1));
+            avl.DisplayTree();
+            return;
             Klasa1 k1 = Singleton<Klasa1>.Instance;
             Klasa1 k3 = new Klasa1();
             Console.WriteLine(k1.iter);
