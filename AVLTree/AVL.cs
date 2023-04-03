@@ -25,34 +25,43 @@ namespace AVLTree
                     return 1 + (l > r ? l : r); 
                 } 
             }
-            public Node left;
-            public Node right;
+            public Node left = null;
+            public Node right = null;
             public Node(T data) 
             {
                 this.data = data;
             }
 
-            public override string ToString()
+            public string FitData()
             {
-                return string.Format("{0}", data);
+                string s = data.ToString();
+                int l = s.Length;
+                if (l > 5)
+                {
+                    s = s.Remove(5);
+                }else if(l < 5)
+                {
+                    s = s.PadRight((5+l)/2, ' ');
+                    s = s.PadLeft(5, ' ');
+                }
+                return s;
             }
             public string ToStringInfo()
             {
-                return string.Format("|{0} ({1}) {2}|", left?.ToString() ?? "null",Factor, right?.ToString() ?? "null");
+
+                return string.Format("|{0}({1}){2}|", left?.FitData() ?? " null",Factor.ToString().PadLeft(2), right?.FitData() ?? " null");
             }
         }
         Node root;
 
         public AVL()
         {
-
         }
         public void Add(T data)
         {
             Node node = new Node(data);
 
             root = recursiveInsert(root, node);
-
         }
 
         private Node recursiveInsert(Node current, Node node)
@@ -214,8 +223,8 @@ namespace AVLTree
             }
             StringBuilder stringBuilder = new();
             int h = root.Height;
-            
-            
+            Console.WriteLine("h: {0}",h );
+
             if (h > 1)
             {
                 List<StringBuilder> lSB = new List<StringBuilder>();
@@ -234,7 +243,7 @@ namespace AVLTree
                         List<Node> lNodeTmp = new();
                         lNode.ForEach(x => { lNodeTmp.Add(x.left); lNodeTmp.Add(x.right); });
                         lNode = lNodeTmp;
-                        lNode.ForEach(x => lSB[i].Append(x.ToStringInfo()));
+                        lNode.ForEach(x => lSB[i].Append(x?.ToStringInfo()?? new string(' ',16)));
                     }
                 }              
                 int pivotLen = lSB[lSB.Count - 1].Length / 2;
@@ -247,26 +256,6 @@ namespace AVLTree
             }
 
             Console.WriteLine(stringBuilder);
-        }
-        private void InOrderDisplayTree(Node current)
-        {
-            if (current != null)
-            {
-                Console.WriteLine("Data: {0}, Factor: {3}, Height: {4}| Left: {1} Right: {2}", current, nodeToString(current.left),nodeToString(current.right),current.Factor, current.Height);
-                Console.Write("L: ");
-                InOrderDisplayTree(current.left);
-                Console.Write("R: ");
-                InOrderDisplayTree(current.right);
-            }
-            else
-            {
-                Console.WriteLine("Null");
-            }
-        }
-
-        private string nodeToString(Node current)
-        {
-            return current != null ? current.ToString() : "Null";
         }
     }
 }

@@ -8,7 +8,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AVLTree\AVLTree.csproj" />
     <ProjectReference Include="..\Drzewa\Drzewa.csproj" />
-    <ProjectReference Include="..\Singleton\Singleton.csproj" />
   </ItemGroup>
 
 </Project>

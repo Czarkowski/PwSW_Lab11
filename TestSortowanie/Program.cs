@@ -3,12 +3,7 @@ using System;
 
 namespace TestSortowanie
 {
-    class Osoba
-    {
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
 
-    }
     class Program
     {
         static void Main(string[] args)
@@ -23,21 +18,11 @@ namespace TestSortowanie
             {
                 Console.Write("{0}, ",s);
             }
-
             Console.Write("\nLiczby: ");
             foreach (double x in tab1)
             {
                 Console.Write("{0}, ",x);
             }
-
-            Osoba[] osoby =
-            {
-                new Osoba{Imie="Jan",Nazwisko="Kowalski" },
-                new Osoba{Imie="Tomasz", Nazwisko="Nowal"},
-                new Osoba{Imie="Marek",Nazwisko="Markowski"}
-            };
-            //SortowanieStogowe.Sortuj<Osoba>(osoby);
-            Console.Read();
         }
     }
 }

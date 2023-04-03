@@ -9,7 +9,6 @@ namespace Drzewa
             public Wezel lewy;
             public Wezel prawy;
             public T dane;
-
             public Wezel(T x, Wezel lewy, Wezel prawy)
             {
                 this.lewy = lewy;
@@ -58,7 +57,6 @@ namespace Drzewa
             }
 
         }
-
         public bool Wyszukaj(T x)
         {
             Wezel tmp = korzen;
@@ -82,7 +80,6 @@ namespace Drzewa
             }
             return false;
         }
-
         public T[] ZamienNaTablice()
         {
             T[] tab = new T[LiczbaElementow];
@@ -96,7 +93,6 @@ namespace Drzewa
             }
             return tab;
         }
-
         private static void zamienNaTablice(Wezel w, T[] tab, ref int n)
         {
             if (w != null)
