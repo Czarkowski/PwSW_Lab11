@@ -10,17 +10,6 @@ namespace TestDrzewa
         static void Main(string[] args)
         {
 
-            string s = 76345863465834.ToString();
-            Console.WriteLine(s);
-            Console.WriteLine( s.PadLeft(10));
-            Console.WriteLine( s.PadLeft(100));
-            Console.WriteLine( s.Remove(10,1));
-            Console.WriteLine( "{0}",null);
-            Console.WriteLine(new string(s.ToString().ToCharArray(), 0, 5));
-            //Console.WriteLine(new string("123".ToCharArray(), 0, 5));
-
-
-            //string str = new string(;
 
             AVL<int> avl = new();
 
