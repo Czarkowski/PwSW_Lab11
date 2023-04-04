@@ -1,5 +1,8 @@
 ﻿using SingletonLib;
 using System;
+using System.ComponentModel;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 
 namespace SingletonTest
 {
@@ -9,7 +12,7 @@ namespace SingletonTest
         public int Data { get => data; set => data = value; }
         public override string? ToString()
         {
-            return string.Format("{0} :  {1}",base.ToString(), data);
+            return string.Format("{0} :  {1}", base.ToString(), data);
         }
 
         protected Klasa1()
@@ -22,19 +25,46 @@ namespace SingletonTest
         }
     }
 
-    //public class Klasa2 : Singleton<Klasa2>
-    //{
 
-    //    public int iter;
-    //    static int _iter = 0;
-    //    public Klasa2()
-    //    {
-    //        Console.WriteLine("klasa 2 konstruktor");
-    //        _iter++;
-    //        iter = _iter;
-    //    }
+    public class Klasa2 : ISingleton<Klasa2>
+    {
+
+        private int data;
+        public int Data { get => data; set => data = value; }
+
+        protected Klasa2()
+        {
+            Console.WriteLine("klasa 2 konstruktor");
+        }
+
+        static Klasa2 ISingleton<Klasa2>.initilize()
+        {
+            return new();
+        }
+    }
+
+    public class Klasa3 : ISingleton2<Klasa3>
+    {
+
+        private int data;
+        public int Data { get => data; set
+            {
+                Console.WriteLine("zmieniono wartość z {0} na {1}",data,value);
+                data = value;
+            }
+
+        }
+
+        public static Klasa3 Instance => ISingleton2<Klasa3>.getInstance();
+        static Klasa3 ISingleton2<Klasa3>.initialize() => new();
+        
+
+        protected Klasa3()
+        {
+            Console.WriteLine("klasa 3 konstruktor");
+        }
 
 
-    //}
+    }
 }
 

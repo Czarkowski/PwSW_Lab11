@@ -223,8 +223,7 @@ namespace AVLTree
             }
             StringBuilder stringBuilder = new();
             int h = root.Height;
-            Console.WriteLine("h: {0}",h );
-
+            int maxLen = (int)Math.Pow(2, (h - 2)) * 16;
             if (h > 1)
             {
                 List<StringBuilder> lSB = new List<StringBuilder>();
@@ -232,22 +231,28 @@ namespace AVLTree
                 {
                     lSB.Add(new StringBuilder());
                 }
-                lSB[0].AppendFormat("|{0}({1})|", root.data, root.Factor);
+                string sRoot = string.Format("|{0}({1})|", root.data, root.Factor);
+                lSB[0].AppendFormat("{0}{1}", new string(' ', (maxLen - sRoot.Length) / 2),sRoot);
                 lSB[1].Append(root.ToStringInfo());
                 if (h > 2)
                 {
-                    List<Node> lNode = new();
-                    lNode.Add(root);
+                    lSB[1].Insert(0, new string(' ', (maxLen - 16) / 2));
+                    List<Node> lNode = new(){root};
                     for (int i = 2; i < h; i++)
                     {
                         List<Node> lNodeTmp = new();
                         lNode.ForEach(x => { lNodeTmp.Add(x.left); lNodeTmp.Add(x.right); });
                         lNode = lNodeTmp;
-                        lNode.ForEach(x => lSB[i].Append(x?.ToStringInfo()?? new string(' ',16)));
+                        int distance = (maxLen - (lNode.Count * 16)) / (lNode.Count * 2);
+                        lNode.ForEach(x => {
+
+                            lSB[i].Append(new string(' ', distance));
+                            lSB[i].Append(x?.ToStringInfo() ?? new string(' ', 16));
+                            lSB[i].Append(new string(' ', distance));
+                        }
+                        );
                     }
-                }              
-                int pivotLen = lSB[lSB.Count - 1].Length / 2;
-                lSB.ForEach(x => x.Insert(0, new string(' ', pivotLen - (x.Length / 2))));
+                }
                 lSB.ForEach(x => stringBuilder.AppendLine(x.ToString()));
             }
             else

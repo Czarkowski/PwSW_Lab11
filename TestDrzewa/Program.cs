@@ -7,40 +7,27 @@ namespace TestDrzewa
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
 
 
             AVL<int> avl = new();
-
-            avl.Add(1);
-            avl.DisplayTree();
-            avl.Add(2);
-            avl.DisplayTree();
-            avl.Add(3);
-            avl.DisplayTree();
-            avl.Add(4);
-            avl.DisplayTree();
-            avl.Add(5);
-            avl.DisplayTree();
-            avl.Add(6);
-            avl.DisplayTree();
-            avl.Add(7);
-            avl.DisplayTree();
-            avl.Add(8);
-            avl.DisplayTree();
-            avl.Add(9);
-            avl.DisplayTree();
-            avl.Add(-1);
-            avl.DisplayTree();
-            Console.WriteLine(avl.Remove(1));
-            avl.DisplayTree();
-
-            for (int i = 1; i < 100; i++)
+                  
+            for (int i = 1; i < 10; i++)
             {
                 avl.Add(i);
             }
             avl.DisplayTree();
+            Console.WriteLine(avl.Remove(1));
+            Console.WriteLine(avl.Remove(0));
+            avl.DisplayTree();
+            for (int i = -1; i > -10; i--)
+            {
+                avl.Add(i);
+            }
+            avl.DisplayTree();
+
             return;
   
 
